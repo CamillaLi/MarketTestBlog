@@ -1,0 +1,28 @@
+{% extends "base_page.html" %}
+
+{% block title %}
+    行情测试
+{% endblock %}
+
+{% block content %}
+    <div class="container theme-showcase">
+        <h1 class="font-xihei">行情测试组</h1>
+
+        <p class="lead font-xihei">“不积跬步无以至千里，不积小流无以成江海”</p>
+
+    </div>
+    
+        <div class="container theme-showcase" style="min-height: 600px">
+		    <div>
+                <h2>【置顶文章】</h2>
+            </div>
+    
+            <div id="article_item">
+            </div>
+	    </div>
+{% endblock %}
+
+{% block ext_js %}
+    {{ super() }}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/src/index.js') }}"></script>
+{% endblock %}
