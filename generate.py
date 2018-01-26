@@ -269,7 +269,7 @@ def scan_md():
     for f in _MD_FILES:
         file_base_name = os.path.splitext(os.path.basename(f))[0]
         _current_file_index = str2pinyin(
-            codecs.decode(file_base_name, "gb2312")
+            codecs.decode(file_base_name, "gb18030")
         )
         _pinyin_names.add(_current_file_index)
         gen(f)
