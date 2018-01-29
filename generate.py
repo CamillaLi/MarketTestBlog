@@ -132,7 +132,7 @@ def create_index(filename, meta):
     :return:
     """
 
-    filename = codecs.decode(filename, "gbk", "ingore")
+    filename = codecs.decode(filename, "UTF-8")
 
     index_tags(meta.get("tags", []), _current_file_index)
     index_authors(meta.get("authors", []), _current_file_index)
@@ -269,7 +269,7 @@ def scan_md():
     for f in _MD_FILES:
         file_base_name = os.path.splitext(os.path.basename(f))[0]
         _current_file_index = str2pinyin(
-            codecs.decode(file_base_name, "GBK", "ignore")
+            codecs.decode(file_base_name, "UTF-8")
         )
         _pinyin_names.add(_current_file_index)
         gen(f)
