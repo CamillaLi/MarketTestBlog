@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# -*- coding:utf-8 -*-
+# -*- coding:gb18030 -*-
 
 """Documentation"""
 
@@ -14,19 +14,19 @@ from markdown import Markdown
 import pypinyin
 
 
-# é™æ€æ–‡ä»¶è·¯å¾„ï¼Œé»˜è®¤ä¸º`/static/`
-# è¡¨ç¤ºä½¿ç”¨flaskå‘å¸ƒç½‘ç«™æ—¶çš„`http://ip:port/static/`ç›®å½•
-# ä¹Ÿå¯æŒ‡å®šä¸ºå›ºå®šåœ°å€çš„é™æ€æ–‡ä»¶urlï¼Œä¾‹å¦‚ï¼š"http://192.168.62.47:5000/static/"
-# æ³¨æ„ï¼Œä½¿ç”¨å…¶ä»–åŸŸåçš„é™æ€æ–‡ä»¶æ—¶æœ‰å¯èƒ½å¼•èµ·è·¨åŸŸé—®é¢˜
+# ¾²Ì¬ÎÄ¼şÂ·¾¶£¬Ä¬ÈÏÎª`/static/`
+# ±íÊ¾Ê¹ÓÃflask·¢²¼ÍøÕ¾Ê±µÄ`http://ip:port/static/`Ä¿Â¼
+# Ò²¿ÉÖ¸¶¨Îª¹Ì¶¨µØÖ·µÄ¾²Ì¬ÎÄ¼şurl£¬ÀıÈç£º"http://192.168.62.47:5000/static/"
+# ×¢Òâ£¬Ê¹ÓÃÆäËûÓòÃûµÄ¾²Ì¬ÎÄ¼şÊ±ÓĞ¿ÉÄÜÒıÆğ¿çÓòÎÊÌâ
 STATIC_ROOT = "/static/"
 
-# Markdownæ–‡ä»¶è¯»å–ç›®å½•
+# MarkdownÎÄ¼ş¶ÁÈ¡Ä¿Â¼
 INPUT_CONTENT = "./in/"
 
-# ç´¢å¼•æ–‡ä»¶
+# Ë÷ÒıÎÄ¼ş
 INDEX_DAT = "./static/out/index.dat"
 
-# htmlç”Ÿæˆè¾“å‡ºç›®å½•
+# htmlÉú³ÉÊä³öÄ¿Â¼
 OUTPUT_CONTENT = "./static/out/"
 
 env = Environment(
@@ -34,12 +34,12 @@ env = Environment(
 )
 
 
-# æ ‡ç­¾å€’æ’ç´¢å¼•
+# ±êÇ©µ¹ÅÅË÷Òı
 TAG_INVERTED_INDEX = {}
-# ä½œè€…å€’æ’ç´¢å¼•
+# ×÷Õßµ¹ÅÅË÷Òı
 AUTHOR_INVERTED_INDEX = {}
 
-# æ–‡ç« ç´¢å¼•
+# ÎÄÕÂË÷Òı
 ARTICLE_INDEX = {}
 ARTICLE_RANK = {}
 
@@ -50,7 +50,7 @@ _pinyin_names = set()
 
 TAG_HTML_TEMPLATE = u"<a href='/tag/{tag}/' class='tag-index'>{tag}</a>"
 AUTHOR_HTML_TEMPLATE = u"<a href='' class='tag-index'>{author}</a>"
-TITLE_HTML_TEMPLATE = u"<div class='sidebar-module-inset'><h5 class='sidebar-title'><i class='icon-circle-blank side-icon'></i>æ ‡é¢˜</h5><p>{title_str}</p></div>"
+TITLE_HTML_TEMPLATE = u"<div class='sidebar-module-inset'><h5 class='sidebar-title'><i class='icon-circle-blank side-icon'></i>±êÌâ</h5><p>{title_str}</p></div>"
 
 
 def _reload_global():
@@ -66,20 +66,20 @@ def _reload_global():
 
 
 def clean():
-    """æ¸…ç†è¾“å‡ºæ–‡ä»¶å¤¹
+    """ÇåÀíÊä³öÎÄ¼ş¼Ğ
     """
     if os.path.exists(OUTPUT_CONTENT):
         shutil.rmtree(OUTPUT_CONTENT)
 
 
 def parse_time(timestamp, pattern="%Y-%m-%d %H:%M:%S"):
-    """è§£ææ—¶é—´
+    """½âÎöÊ±¼ä
     """
     return datetime.fromtimestamp(timestamp).strftime(pattern)
 
 
 def str2pinyin(hans, style=pypinyin.FIRST_LETTER):
-    """å­—ç¬¦ä¸²è½¬æ‹¼éŸ³ï¼Œé»˜è®¤åªè·å–é¦–å­—æ¯
+    """×Ö·û´®×ªÆ´Òô£¬Ä¬ÈÏÖ»»ñÈ¡Ê××ÖÄ¸
     """
     pinyin_str = pypinyin.slug(hans, style=style, separator="")
     num = 2
@@ -90,7 +90,7 @@ def str2pinyin(hans, style=pypinyin.FIRST_LETTER):
 
 
 def dump_index():
-    """æŒä¹…åŒ–ç´¢å¼•ä¿¡æ¯
+    """³Ö¾Ã»¯Ë÷ÒıĞÅÏ¢
     """
     dat = shelve.open(INDEX_DAT)
     dat["article_index"] = ARTICLE_INDEX
@@ -101,7 +101,7 @@ def dump_index():
 
 
 def index_tags(tags, fid):
-    """ä¸ºæ ‡ç­¾å€’æ’ç´¢å¼•æ·»åŠ æ ‡ç­¾
+    """Îª±êÇ©µ¹ÅÅË÷ÒıÌí¼Ó±êÇ©
     """
     for tag in tags:
         if tag in TAG_INVERTED_INDEX:
@@ -115,7 +115,7 @@ def index_rank(rank, fid):
     ARTICLE_RANK[fid] = rank
     
 def index_authors(authors, fid):
-    """ä¸ºä½œè€…å€’æ’ç´¢å¼•æ·»åŠ ä½œè€…
+    """Îª×÷Õßµ¹ÅÅË÷ÒıÌí¼Ó×÷Õß
     """
     for author in authors:
         if author in AUTHOR_INVERTED_INDEX:
@@ -125,8 +125,8 @@ def index_authors(authors, fid):
 
 
 def create_index(filename, meta):
-    """åˆ›å»ºç´¢å¼•ä¿¡æ¯
-    :param filename: æ–‡ä»¶ä»INPUT_CONTENTå¼€å§‹çš„å…¨è·¯å¾„
+    """´´½¨Ë÷ÒıĞÅÏ¢
+    :param filename: ÎÄ¼ş´ÓINPUT_CONTENT¿ªÊ¼µÄÈ«Â·¾¶
     :param meta:
     :type meta: dict
     :return:
@@ -153,7 +153,7 @@ def create_index(filename, meta):
         "modify_time": parse_time(os.path.getmtime(filename)),
         "title": title,
         "summary": meta.get("summary", [u""])[0],
-        "authors": meta.get("authors", [u"åŒ¿å"]),
+        "authors": meta.get("authors", [u"ÄäÃû"]),
         "publish_date": publish_date,
         "tags": meta.get("tags", []),
         "rank": meta.get("rank", 0)
@@ -161,7 +161,7 @@ def create_index(filename, meta):
 
 
 def get_out_dir(md_file):
-    """è·å–mdæ–‡ä»¶çš„è¾“å‡ºè·¯å¾„
+    """»ñÈ¡mdÎÄ¼şµÄÊä³öÂ·¾¶
     :param md_file:
     :return:
     """
@@ -170,7 +170,7 @@ def get_out_dir(md_file):
 
 
 def save_html(out_path, html):
-    """ä¿å­˜htmlè‡³æ–‡ä»¶
+    """±£´æhtmlÖÁÎÄ¼ş
     :param out_path:
     :param html:
     :return:
@@ -184,7 +184,7 @@ def save_html(out_path, html):
 
 
 def render_tags_html(tags):
-    """æ¸²æŸ“tagsçš„html
+    """äÖÈ¾tagsµÄhtml
     """
     tags_html = ""
     for tag in tags:
@@ -193,7 +193,7 @@ def render_tags_html(tags):
 
 
 def render_authors_html(authors):
-    """æ¸²æŸ“ä½œè€…html
+    """äÖÈ¾×÷Õßhtml
     """
     authors_html = ""
     for author in authors:
@@ -202,7 +202,7 @@ def render_authors_html(authors):
 
 
 def render_title_html(title):
-    """æ¸²æŸ“æ ‡é¢˜html
+    """äÖÈ¾±êÌâhtml
     """
     title_html = ""
     if title.strip() != "":
@@ -211,7 +211,7 @@ def render_title_html(title):
 
 
 def render(md_file):
-    """æ¸²æŸ“htmlé¡µé¢
+    """äÖÈ¾htmlÒ³Ãæ
     :param md_file:
     :return:
     """
@@ -220,10 +220,10 @@ def render(md_file):
         md = Markdown(
             extensions=[
                 #"fenced_code",
-                "pymdownx.details",     # å¯éšè—çš„æ¨¡å—
-                "pymdownx.mark",        # é«˜äº®
-                "pymdownx.b64",         # ä½¿ç”¨æœ¬åœ°å›¾ç‰‡
-                "pymdownx.superfences", # æµç¨‹å›¾å’Œæ—¶åºå›¾
+                "pymdownx.details",     # ¿ÉÒş²ØµÄÄ£¿é
+                "pymdownx.mark",        # ¸ßÁÁ
+                "pymdownx.b64",         # Ê¹ÓÃ±¾µØÍ¼Æ¬
+                "pymdownx.superfences", # Á÷³ÌÍ¼ºÍÊ±ĞòÍ¼
                 "codehilite(css_class=highlight,linenums=None)",
                 "meta",
                 "admonition",
@@ -254,7 +254,7 @@ def render(md_file):
 
 
 def gen(md_file_path):
-    """å°†markdownç”Ÿæˆhtmlæ–‡ä»¶
+    """½«markdownÉú³ÉhtmlÎÄ¼ş
     :param md_file_path:
     """
     out_path = get_out_dir(md_file_path)
@@ -263,20 +263,20 @@ def gen(md_file_path):
 
 
 def scan_md():
-    """æ‰«æmdæ–‡ä»¶
+    """É¨ÃèmdÎÄ¼ş
     """
     global _current_file_index
     for f in _MD_FILES:
         file_base_name = os.path.splitext(os.path.basename(f))[0]
         _current_file_index = str2pinyin(
-            codecs.decode(file_base_name, "gb2312", "ignore")
+            codecs.decode(file_base_name, "gb18030", "ignore")
         )
         _pinyin_names.add(_current_file_index)
         gen(f)
 
 
 def load_md_files(folder):
-    """ä»æŒ‡å®šæ–‡ä»¶å¤¹è½½å…¥Markdownæ–‡ä»¶
+    """´ÓÖ¸¶¨ÎÄ¼ş¼ĞÔØÈëMarkdownÎÄ¼ş
     """
     global _MD_FILES
     for root, dirs, files in os.walk(folder):
