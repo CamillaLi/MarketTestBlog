@@ -12,6 +12,9 @@ from datetime import datetime
 from jinja2 import Environment, FileSystemLoader
 from markdown import Markdown
 import pypinyin
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 
 # 静态文件路径，默认为`/static/`
@@ -132,7 +135,7 @@ def create_index(filename, meta):
     :return:
     """
 
-    filename = codecs.decode(filename, "UTF-8")
+    filename = codecs.decode(filename, "utf-8")
 
     index_tags(meta.get("tags", []), _current_file_index)
     index_authors(meta.get("authors", []), _current_file_index)
@@ -269,7 +272,7 @@ def scan_md():
     for f in _MD_FILES:
         file_base_name = os.path.splitext(os.path.basename(f))[0]
         _current_file_index = str2pinyin(
-            codecs.decode(file_base_name, "UTF-8")
+            codecs.decode(file_base_name, "utf-8")
         )
         _pinyin_names.add(_current_file_index)
         gen(f)
