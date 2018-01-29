@@ -132,7 +132,7 @@ def create_index(filename, meta):
     :return:
     """
 
-    filename = codecs.decode(filename, "gb2312")
+    filename = codecs.decode(filename, "gbk", "ingore")
 
     index_tags(meta.get("tags", []), _current_file_index)
     index_authors(meta.get("authors", []), _current_file_index)
