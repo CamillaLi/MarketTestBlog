@@ -12,9 +12,7 @@ from datetime import datetime
 from jinja2 import Environment, FileSystemLoader
 from markdown import Markdown
 import pypinyin
-import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
+import ConfigParser
 
 
 # 静态文件路径，默认为`/static/`
@@ -55,6 +53,9 @@ TAG_HTML_TEMPLATE = u"<a href='/tag/{tag}/' class='tag-index'>{tag}</a>"
 AUTHOR_HTML_TEMPLATE = u"<a href='' class='tag-index'>{author}</a>"
 TITLE_HTML_TEMPLATE = u"<div class='sidebar-module-inset'><h5 class='sidebar-title'><i class='icon-circle-blank side-icon'></i>标题</h5><p>{title_str}</p></div>"
 
+# config = ConfigParser.ConfigParser()
+# config.read('config.ini')
+# imgaddress = config.get('Home','imgaddress')
 
 def _reload_global():
     global TAG_INVERTED_INDEX, AUTHOR_INVERTED_INDEX, ARTICLE_INDEX,\
@@ -135,7 +136,7 @@ def create_index(filename, meta):
     :return:
     """
 
-    filename = codecs.decode(filename, "utf-8")
+    filename = codecs.decode(filename, "gb2312")
 
     index_tags(meta.get("tags", []), _current_file_index)
     index_authors(meta.get("authors", []), _current_file_index)
@@ -272,7 +273,7 @@ def scan_md():
     for f in _MD_FILES:
         file_base_name = os.path.splitext(os.path.basename(f))[0]
         _current_file_index = str2pinyin(
-            codecs.decode(file_base_name, "utf-8")
+            codecs.decode(file_base_name, "gb2312")
         )
         _pinyin_names.add(_current_file_index)
         gen(f)
