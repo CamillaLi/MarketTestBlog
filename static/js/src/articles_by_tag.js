@@ -13,7 +13,7 @@ var ARTICLE_ITEM_TEMPLATE = "" +
     "</div>";
 
 var TAG_TEMPLATE = "<a href='/tag/{tag}/' class='tag-index'>{tag}</a>";
-var AUTHOR_TEMPLATE = "<a href='' class='author-index'>{author}</a>";
+var AUTHOR_TEMPLATE = "<a href='/author/{author}/' class='author-index'>{author}</a>";
 
 function renderTags(tags) {
     var tagHtml = "";

@@ -10,17 +10,26 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container theme-showcase" style="min-height: 600px">
-        <div>
-            <h1>所有标签</h1>
-        </div>
 
-        <dl id="tags" class="dl-horizontal">
-        </dl>
+    <div class="container theme-showcase" style="min-height: 600px">
+        <ul >
+            <li>
+                <h1>所有标签</h1>
+                <dl id="tags" class="dl-horizontal">
+                </dl>
+            </li>
+            <li>
+                <h1>所有作者</h1>
+                <dl id="authors" class="dl-horizontal">
+                </dl>
+            </li>
+        </ul>
     </div>
+
 {% endblock %}
 
 {% block ext_js %}
     {{ super() }}
     <script type="text/javascript" src="{{ url_for('static', filename='js/src/tags.js') }}"></script>
+
 {% endblock %}

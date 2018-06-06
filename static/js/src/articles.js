@@ -13,7 +13,7 @@ var ARTICLE_ITEM_TEMPLATE = "" +
     "</div>";
 
 var TAG_TEMPLATE = "<a href='/tag/{tag}/' class='tag-index'>{tag}</a>";
-var AUTHOR_TEMPLATE = "<a href='' class='author-index'>{author}</a>";
+var AUTHOR_TEMPLATE = "<a href='/author/{author}/' class='author-index'>{author}</a>";
 
 function renderTags(tags) {
     var tagHtml = "";
@@ -68,6 +68,7 @@ function renderArticleItem(data) {
 }
 
 var SUB_TAG_TEMPLATE = "<dt><a href='/tag/{tag}/'>{tag}</a></dt><dd>{count}<dd>";
+var SUB_AUTHOR_TEMPLATE = "<dt><a href='/author/{author}/'>{author}</a></dt><dd>{count}<dd>";
 
 function renderSubTags(data){
     var tagsHtml = "";
@@ -76,6 +77,15 @@ function renderSubTags(data){
             .replace(/\{count}/g, data[key].length);
     }
     $("#tags").html(tagsHtml);
+}
+
+function renderSubAuthors(data){
+    var authorHtml = "";
+    for (var key in data) {
+        authorHtml += SUB_AUTHOR_TEMPLATE.replace(/\{author}/g, key)
+            .replace(/\{count}/g, data[key].length);
+    }
+    $("#author").html(authorHtml);
 }
 
 $(document).ready(function () {
@@ -96,6 +106,16 @@ $(document).ready(function () {
         url: tagsurl,
         success: function(data) {
             renderSubTags(data);
+        }
+    });
+
+    var authorurl = "/api/index/inv_author/";
+    $.ajax({
+        type: "get",
+        dateType: "json",
+        url: authorurl,
+        success: function(data) {
+            renderSubAuthors(data);
         }
     });
 });

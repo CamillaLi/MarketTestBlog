@@ -82,6 +82,14 @@ def get_article_by_tag(tag):
     articles = {i: IndexData.get_index_data().get("article_index")[i] for i in aids}
     return jsonify(articles)
 
+@api.route("/index/author/<author>/")
+def get_article_by_author(author):
+    """获取指定标签的索引信息
+    """
+    aids = IndexData.get_index_data().get("author_inverted_index").get(author)
+    articles = {i: IndexData.get_index_data().get("article_index")[i] for i in aids}
+    return jsonify(articles)
+
 
 @api.route("/file/upload", methods=["POST"])
 def upload_article():

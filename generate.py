@@ -50,7 +50,7 @@ _current_file_index = None
 _pinyin_names = set()
 
 TAG_HTML_TEMPLATE = u"<a href='/tag/{tag}/' class='tag-index'>{tag}</a>"
-AUTHOR_HTML_TEMPLATE = u"<a href='' class='tag-index'>{author}</a>"
+AUTHOR_HTML_TEMPLATE = u"<a href='/author/{author}/' class='author-index'>{author}</a>"
 TITLE_HTML_TEMPLATE = u"<div class='sidebar-module-inset'><h5 class='sidebar-title'><i class='icon-circle-blank side-icon'></i>标题</h5><p>{title_str}</p></div>"
 
 # config = ConfigParser.ConfigParser()

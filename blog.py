@@ -69,6 +69,13 @@ def page_article_by_tag(tag):
     return render_template("articles_by_tag.html", tag=tag)
 
 
+@app.route("/author/<author>/")
+def page_article_by_author(author):
+    """页面-指定作者的文章列表
+    """
+    return render_template("articles_by_author.html", author=author)
+
+
 @app.route("/upload/")
 def page_upload():
     return render_template("upload.html")
